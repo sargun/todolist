@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import { createStore } from 'redux';
 import {todoApp} from './state';
-import {addTodo, toggleTodo, setVisibilityFilter, VisibilityFilters} from "./actionTypes";
+import {AddTodo, ToggleTodo, SetVisibilityFilter, VisibilityFilters} from "./actionTypes";
 
 let store = createStore(
     todoApp,
@@ -22,12 +22,12 @@ let unsubscribe = store.subscribe(() =>
 
 
 // Dispatch some actions
-store.dispatch(addTodo('Learn about actions'));
-store.dispatch(addTodo('Learn about reducers'));
-store.dispatch(addTodo('Learn about store'));
-store.dispatch(toggleTodo(1));
-store.dispatch(toggleTodo(2));
-store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED));
+store.dispatch(new AddTodo('Learn about actions'));
+store.dispatch(new AddTodo('Learn about reducers'));
+store.dispatch(new AddTodo('Learn about store'));
+store.dispatch(new ToggleTodo(1));
+store.dispatch(new ToggleTodo(2));
+store.dispatch(new SetVisibilityFilter(VisibilityFilters.SHOW_COMPLETED));
 
 // Stop listening to state updates
 unsubscribe();

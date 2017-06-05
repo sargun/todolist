@@ -20,31 +20,43 @@ export const VisibilityFilters = {
 export type VisibilityFilter = $Keys<typeof VisibilityFilters>;
 export type idx = number;
 
-export function addTodo(text: string) {
-    return {
-        type: Actions.ADD_TODO,
-        text
+export class Action {
+    type: ActionType;
+    constructor(actionType: ActionType) {
+        this.type = actionType;
     }
 }
 
-export function completeTodo(id: idx) {
-    return {
-        type: Actions.COMPLETE_TODO,
-        id
+
+export class AddTodo extends Action {
+    text: string;
+    constructor(text: string) {
+        super(Actions.ADD_TODO);
+        this.text = text;
     }
 }
 
-export function toggleTodo(id: idx) {
-    return {
-        type: Actions.TOGGLE_TODO,
-        id
+export class CompleteTodo extends Action {
+    id: idx;
+    constructor(id: idx) {
+        super(Actions.COMPLETE_TODO);
+        this.id = id;
     }
 }
 
-export function setVisibilityFilter(filter: VisibilityFilter) {
-    return {
-        type: Actions.SET_VISIBILITY_FILTER,
-        filter
+
+export class ToggleTodo extends Action {
+    id: idx;
+    constructor(id: idx) {
+        super(Actions.TOGGLE_TODO);
+        this.id = id;
     }
 }
 
+export class SetVisibilityFilter extends Action {
+    visibilityFilter: VisibilityFilter;
+    constructor(visibilityFilter: VisibilityFilter) {
+        super(Actions.SET_VISIBILITY_FILTER);
+        this.visibilityFilter = visibilityFilter;
+    }
+}
